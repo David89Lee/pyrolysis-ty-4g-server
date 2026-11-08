@@ -43,6 +43,18 @@ type Dtu struct {
 
 var DtuSetting = &Dtu{}
 
+type Auth struct {
+	TokenSecret      string
+	TokenExpireHours int
+	AdminPassword    string
+}
+
+var AuthSetting = &Auth{
+	TokenSecret:      "pyrolysis-ty-4g-secret",
+	TokenExpireHours: 24,
+	AdminPassword:    "123456",
+}
+
 var commonCfg *ini.File
 
 func SetUpSetting(CfgFileDir string) {
@@ -59,6 +71,11 @@ func SetUpSetting(CfgFileDir string) {
 	mapTo(commonCfg, "log", LogSetting)
 	mapTo(commonCfg, "database", DatabaseSetting)
 	mapTo(commonCfg, "dtu", DtuSetting)
+
+	// auth 为可选配置节，缺省时保留默认值
+	if sec, err := commonCfg.GetSection("auth"); err == nil {
+		_ = sec.MapTo(AuthSetting)
+	}
 }
 
 func mapTo(cfg *ini.File, section string, v interface{}) {

@@ -8,6 +8,7 @@ const (
 	ErrorAuthCheckTokenFail    = 601
 	ErrorAuthCheckTokenTimeout = 602
 	ErrorGenerateToken         = 603
+	ErrorLoginFail             = 604
 	ErrorConnectWebSocket      = 610
 	ErrorReadWebSocket         = 611
 

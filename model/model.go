@@ -68,9 +68,11 @@ func Setup() {
 		zap.L().Fatal("Gorm初始化失败", zap.Error(err))
 	}
 
-	err = DB.AutoMigrate(&Info{}, &Dtu1{}, &Dtu2{}, &Dtu3{}, &Dtu4{},
+	err = DB.AutoMigrate(&Info{}, &User{}, &Dtu1{}, &Dtu2{}, &Dtu3{}, &Dtu4{},
 		&Dtu1His{}, &Dtu2His{}, &Dtu3His{}, &Dtu4His{})
 	if err != nil {
 		zap.L().Error("Gorm自动迁移失败", zap.Error(err))
 	}
+
+	SeedAdmin()
 }

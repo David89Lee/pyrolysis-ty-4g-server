@@ -8,6 +8,7 @@ var MsgFlags = map[int]string{
 	ErrorAuthCheckTokenFail:    "token不合法",
 	ErrorAuthCheckTokenTimeout: "token超时",
 	ErrorGenerateToken:         "生成token失败",
+	ErrorLoginFail:             "用户名或密码错误",
 	ErrorConnectWebSocket:      "连接websocket失败",
 	ErrorReadWebSocket:         "读取websocket失败",
 

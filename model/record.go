@@ -11,6 +11,7 @@ import (
 type Info struct {
 	gorm.Model
 	Sn          string `Gorm:"type:char(16); comment:'sn(区分dtu)'"`
+	DeviceName  string `Gorm:"type:varchar(64); comment:'设备名称'"`
 	Description string `Gorm:"type:varchar(255); comment:'描述'"`
 }
 
@@ -108,7 +109,7 @@ func CreateInfo(info *Info) (*Info, error) {
 
 func UpdateInfo(info *Info) (*Info, error) {
 	result := DB.Model(&Info{}).Where("id = ?", info.ID).
-		Select("Sn", "Description").Updates(info)
+		Select("Sn", "DeviceName", "Description").Updates(info)
 	return info, result.Error
 }
 
